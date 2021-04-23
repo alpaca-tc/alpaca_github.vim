@@ -18,11 +18,6 @@ if !executable('git')
   finish
 endif
 
-if globpath(&rtp, 'plugin/openbrowser.vim') ==# ''
-  call s:error('open-browser-github.vim depends on open-browser.vim. Please install open-browser.vim')
-  finish
-endif
-
 command! -range=0 -bar -nargs=* -complete=file
       \   GhFile
       \   call alpaca_github#open_file([<f-args>], <count>, <line1>, <line2>)
@@ -36,3 +31,7 @@ command! -range -bar -nargs=* -complete=file
       \   call alpaca_github#open_pull_request([<f-args>], <count>, <line1>, <line2>)
 
 let &cpo = s:save_cpo
+
+if globpath(&rtp, 'plugin/openbrowser.vim') ==# ''
+  call s:error('open-browser-github.vim depends on open-browser.vim. Please install open-browser.vim')
+endif
