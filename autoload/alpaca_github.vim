@@ -4,7 +4,7 @@ function! alpaca_github#open_file(args, rangegiven, firstlnum, lastlnum) abort
   let root_and_relative_path = alpaca_github#git#split_repo_path(file)
   let relative_path = root_and_relative_path[1]
 
-  let BLOB_FORMAT = '/blob/%s/%s#%s'
+  let BLOB_FORMAT = 'blob/%s/%s#%s'
 
   if a:rangegiven
     let anchor = "L".a:firstlnum."-L".a:lastlnum
@@ -35,8 +35,6 @@ function! alpaca_github#open_pull_request(args, rangegiven, firstlnum, lastlnum)
   let relative_path = root_and_relative_path[1]
 
   let options = ['log', '--pretty=format:"%h"', '--no-patch', '-1']
-
-  let BLOB_FORMAT = '/blob/%s/%s#%s'
 
   if a:rangegiven
     call add(options, "-L". string(a:firstlnum) . ',' . string(a:firstlnum) . ':' . file)
